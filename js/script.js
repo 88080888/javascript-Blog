@@ -229,16 +229,14 @@ function authorClickHandler(event){
 
   const activeLinks = document.querySelectorAll('a.active[href^="#author-"]');
 
-  for(let activeLink of activeLinks){
-
+  for (let activeLink of activeLinks) {
     activeLink.classList.remove('active');
   }
+  const authorLinks = document.querySelectorAll('a.active[href^="#author-"]');
 
-  const tagLinks = document.querySelectorAll('a.active[href^="#author-"]');
+  for(let authorLink of authorLinks){
 
-  for(let tagLink of tagLinks){
-
-    tagLink.classList.add('active');
+    authorLink.classList.add('active');
   }
   generateTitleLinks('[data-author="' + author + '"]');
 }
