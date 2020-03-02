@@ -180,6 +180,7 @@ function addClickListenersToTags(){
 }
 addClickListenersToTags();
 
+
 function generateAuthors() {
   /* find all articles */
   //znajduję wszystkie artykuły w dokumencie zawierjące listę artykułów optArticleSecector(.post)
@@ -217,4 +218,40 @@ function generateAuthors() {
   /* END LOOP: for every article: */
 }
 generateAuthors();
-  
+
+function authorClickHandler(event){
+  event.preventDefault();
+  const clickedElement = this;
+
+  const href = clickedElement.getAttribute('href');
+
+  const author = href.replace('#author-', '');
+
+  const activeLinks = document.querySelectorAll('a.active[href^="#author-"]');
+
+  for(let activeLink of activeLinks){
+
+    activeLink.classList.remove('active');
+  }
+
+  const tagLinks = document.querySelectorAll('a.active[href^="#author-"]');
+
+  for(let tagLink of tagLinks){
+
+    tagLink.classList.add('active');
+  }
+  generateTitleLinks('[data-author="' + author + '"]');
+}
+
+function addClickListenersToAuthors() {
+  /* find all links to  */
+  const links = document.querySelectorAll('.authors a');
+
+  /* START LOOP: for each link */
+  for (let link of links) {
+    /* add tagClickHandler as event listener for that link */
+    link.addEventListener('click', authorClickHandler);
+  /* END LOOP: for each link */
+  }
+}
+addClickListenersToAuthors();
