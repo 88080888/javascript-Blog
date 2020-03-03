@@ -203,13 +203,12 @@ function generateAuthors() {
     const articleAuthors = article.getAttribute('data-author');
 
     /* generate HTML of the link */
-    const linkHTML = '<li><a href="#tag-' + articleAuthors + '">'+ articleAuthors +'</a></li>';
+    const linkHTML = '<a href="#author-' + articleAuthors + '">'+ articleAuthors +'</a>';
     console.log (linkHTML);
 
     /* add generated code to html variable */
     html = html + linkHTML;
      
-
     /* END LOOP: for each tag */
     
     /* insert HTML of all the links into the tags wrapper */
@@ -222,7 +221,7 @@ generateAuthors();
 function authorClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
-
+  console.log(1);
   const href = clickedElement.getAttribute('href');
 
   const author = href.replace('#author-', '');
@@ -235,7 +234,6 @@ function authorClickHandler(event){
   const authorLinks = document.querySelectorAll('a.active[href^="#author-"]');
 
   for(let authorLink of authorLinks){
-
     authorLink.classList.add('active');
   }
   generateTitleLinks('[data-author="' + author + '"]');
@@ -243,8 +241,8 @@ function authorClickHandler(event){
 
 function addClickListenersToAuthors() {
   /* find all links to  */
-  const links = document.querySelectorAll('.authors a');
-
+  const links = document.querySelectorAll('.post-author a');
+  console.log(links);
   /* START LOOP: for each link */
   for (let link of links) {
     /* add tagClickHandler as event listener for that link */
